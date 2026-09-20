@@ -1,22 +1,38 @@
+/*
+===============================================================================================================
+CREATE DATABASE AND SCHEMAS
+===============================================================================================================
+Script Purpose - 
+		The below script create a database named Banking_Datawarehouse after checking if it already exists.
+If the database exists, it is dropped and recreated. Additionally, the script sets up three schemas within the 
+database : bronze_layer, silver_layer and gold_layer.
 
+Warning :
+		Running this script will drop the entire 'Banking_Datawarehouse' database if it exists.
+All data in the database will be permanently deleted. Proceed with caution and ensure you have proper
+backups before running this script.
+*/
+================================================================================================================
+
+-- USE MASTER DATABASE
 Use master
 GO
 
----Drop and recreate the 'Banking_Warehousing' database
-IF EXISTS (SELECT 1 FROM sys.databases WHERE name = 'Banking_Warehousing')
+---Drop and recreate the 'Banking_Datawarehouse' database
+IF EXISTS (SELECT 1 FROM sys.databases WHERE name = 'Banking_Datawarehouse')
 
 BEGIN
-	ALTER DATABASE Banking_Warehousing SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-	DROP DATABASE Banking_Warehousing;
+	ALTER DATABASE Banking_Datawarehouse SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+	DROP DATABASE Banking_Datawarehouse;
 END;
 GO
 
----Create the Banking_Warehousing database
+---Create the Banking_Datawarehouse database
 
-CREATE DATABASE Banking_Warehousing;
+CREATE DATABASE Banking_Datawarehouse;
 GO
 
-Use Banking_Warehousing;
+Use Banking_Datawarehouse;
 GO
 
 ----Create Medallion Architecture Schemas
