@@ -1,1 +1,31 @@
 
+Use master
+GO
+
+---Drop and recreate the 'Banking_Warehousing' database
+IF EXISTS (SELECT 1 FROM sys.databases WHERE name = 'Banking_Warehousing')
+
+BEGIN
+	ALTER DATABASE Banking_Warehousing SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+	DROP DATABASE Banking_Warehousing;
+END;
+GO
+
+---Create the Banking_Warehousing database
+
+CREATE DATABASE Banking_Warehousing;
+GO
+
+Use Banking_Warehousing;
+GO
+
+----Create Medallion Architecture Schemas
+
+CREATE SCHEMA bronze_layer;
+GO
+
+CREATE SCHEMA silver_layer;
+GO
+
+CREATE SCHEMA gold_layer;
+GO
